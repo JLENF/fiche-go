@@ -17,5 +17,6 @@ echo just testing! | nc 127.0.0.1 9999
 cat file.txt | nc 127.0.0.1 9999
 ```
 
-based on fiche, originally written in C:
-https://github.com/solusipse/fiche
+based on [fiche](https://github.com/solusipse/fiche), originally written in C.
+
+
