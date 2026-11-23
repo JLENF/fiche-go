@@ -60,7 +60,7 @@ func main() {
 	flag.IntVar(&c.port, "p", 9999, "porta")
 	flag.IntVar(&c.slugLen, "s", 4, "tamanho do slug")
 	flag.BoolVar(&c.https, "S", false, "devolver URL https://")
-	flag.Int64Var(&c.maxBytes, "B", 10<<20, "tamanho maximo de um paste, em bytes")
+	flag.Int64Var(&c.maxBytes, "B", 50<<20, "tamanho maximo de um paste, em bytes")
 	flag.StringVar(&c.logFile, "l", "", "arquivo de log (alem da saida padrao)")
 	flag.IntVar(&c.maxConns, "max-conns", 64, "conexoes simultaneas no total")
 	flag.IntVar(&c.maxPerIP, "max-per-ip", 4, "conexoes simultaneas por IP")

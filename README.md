@@ -7,7 +7,7 @@ with its client usage and flags (`-d -o -p -L -s -S -B -l`).
 ## Features
 - Text **and binary** pastes: UTF-8 text is saved as `index.txt`, anything else as `index.bin`
 - Data is streamed straight to disk (constant memory per connection, even for large pastes)
-- Size limit (`-B`, default 10 MiB): bigger pastes are rejected with a message, never truncated
+- Size limit (`-B`, default 50 MiB): bigger pastes are rejected with a message, never truncated
 - Concurrent connections with global and per-IP limits
 - Idle timeout (works with clients that never half-close, like traditional `nc`) and total timeout
 - Refuses pastes when disk free space is low
@@ -37,7 +37,7 @@ CGO_ENABLED=0 go build -trimpath -ldflags='-s -w' -o fiche-go .
 
 ## Run
 ```
-./fiche-go -d bin.example.com -S -o /srv/bin -B 10485760
+./fiche-go -d bin.example.com -S -o /srv/bin -B 52428800
 ```
 
 | Flag | Default | Description |
@@ -47,7 +47,7 @@ CGO_ENABLED=0 go build -trimpath -ldflags='-s -w' -o fiche-go .
 | `-o` | `./code` | output directory (must exist) |
 | `-L` / `-p` | `0.0.0.0` / `9999` | listen address / port |
 | `-s` | `4` | slug length |
-| `-B` | `10485760` | max paste size in bytes |
+| `-B` | `52428800` | max paste size in bytes |
 | `-l` | | log file (besides stdout) |
 | `-max-conns` | `64` | simultaneous connections |
 | `-max-per-ip` | `4` | simultaneous connections per IP |
@@ -102,7 +102,7 @@ User=fiche
 Group=fiche
 UMask=0022
 LogsDirectory=fiche-go
-ExecStart=/usr/local/bin/fiche-go -d bin.example.com -S -o /srv/bin -l /var/log/fiche-go/fiche-go.log -B 10485760
+ExecStart=/usr/local/bin/fiche-go -d bin.example.com -S -o /srv/bin -l /var/log/fiche-go/fiche-go.log -B 52428800
 Restart=always
 RestartSec=2
 MemoryMax=256M
